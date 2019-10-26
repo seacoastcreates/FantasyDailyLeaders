@@ -4,38 +4,55 @@ import './App.css';
 
 
 function App() {
-	const [data, setData] = useState({ resultSets: [] });
+
+	const [data, setData] = useState({ teams: [] });
 
 	useEffect(() => {
 		const fetchData = async () => {
-			const result = await axios('https://stats.nba.com/stats/scoreboardV2/?GameDate=today&LeagueID=00&DayOffset=-1');
+			const result = await axios('https://fantasy.espn.com/apis/v3/games/fba/seasons/2020/segments/0/leagues/64997217?view=mDraftDetail&view=mLiveScoring&view=mMatchupScore&view=mPendingTransactions&view=mPositionalRatings&view=mSettings&view=mTeam&view=modular&view=mNav');
+
 			setData(result.data);
+
 			
-			const myHeaders = new Headers();
-			myHeaders.append(
-				'Access-Control-Allow-Origin', '*'
-			);
+			// const myHeaders = new Headers();
+			// myHeaders.append(
+			// 	'Access-Control-Allow-Origin', '*'
+			// );
 
 		}
 		fetchData();
+		
 	}, []);
 		
 
-
   return (
-    <div className="App">
-      <header className="App-header">
+    <div className="App container">
+      {/* <header className="App-header">
        <h1>NBA FANTASY PLAYER OF THE NIGHT</h1>
-      </header>
+      </header> */}
 			<main>
-				<ul>
-					{data.resultSets.rowSet}
-					{/* {data.resultSets.map(item => (
-						<li key={item.rowSet}>
-							{item.rowset[2]}
-						</li>
+				<div className="grid">
+
+					{data.sort()}
+					{data.teams.map(team => (
+						<div key={team.id} className="grid-item">
+							<h2>{team.points}</h2>
+							<img src={team.logo} />
+							<h3>{team.location} {team.nickname}</h3>
+						</div>
+					))}	
+
+
+
+					{/* {data.teams.map(team => (
+						<div key={team.id} className="grid-item">
+							<h2>{team.points}</h2>
+							<img src={team.logo} />
+							<h3>{team.location} {team.nickname}</h3>
+						</div>
 					))} */}
-				</ul>
+
+				</div>
 			</main>
 			<footer></footer>
     </div>
