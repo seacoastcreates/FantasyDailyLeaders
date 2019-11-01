@@ -19,28 +19,35 @@ function App() {
 				'Access-Control-Allow-Origin', '*'
 			);
 
+			
 		}
 		fetchData();
-
 		
-		
-		// const orderPoints( a, b ) {
-		// 	if ( a.team.points < b.team.points ){
-		// 		return -1;
-		// 	}
-		// 	if ( a.team.points > b.team.points ){
-		// 		return 1;
-		// 	}
-		// 	return 0;
-		// }
-		
-		
-	
 	}, []);
+	
+	let teams = data.teams;
+	teams.forEach(teams => {
+		let points = teams.points;
+		
+		
+		
+		// points.sort(function(a, b){return b - a}); 
+		
+
+		console.log(points);
+	
+
+		// let sortedPoints = points.sort(function(a,b) {
+		// 	return a.points - b.points;
+		// });
+		// console.log(sortedPoints);
+		
 
 		
-	
-	
+	});
+
+
+
   return (
 
     <div className="App container">
@@ -50,15 +57,22 @@ function App() {
 			<main>
 				<div className="grid">
 				
+			
+		
 				
 				
 					{data.teams.map(team => (
 						<div key={team.id} className="grid-item">
+						
 							<h2>{team.points}</h2>
-							<img src={team.logo} />
+							<img src={team.logo} alt="" />
 							<h3>{team.location} {team.nickname}</h3>
 						</div>
+
+			
 					))}	
+
+				
 
 
 

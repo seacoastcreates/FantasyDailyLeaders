@@ -25,3 +25,11 @@ function Fetch() 	{
 }
 
 export default Fetch;
+
+// points.sort((a,b) => (a.points > b.points) ? 1 : ((b.points > a.points) ? -1 : 0)); 
+		// list.sort((a, b) => (a.points > b.points) ? 1 : (a.points === b.points) ? ((a.size > b.size) ? 1 : -1) : -1 )
+
+
+			// let sortPoints = (points) => {			
+		// 	points.sort((a,b) => (a.points > b.points) ? 1 : ((b.points > a.points) ? -1 : 0)); 
+		// }
