@@ -31,9 +31,15 @@ function App() {
 	let teams = data.teams;
 
 	teams.forEach( (team) => {
-		let seasonPointTotal = teams.points;	
-
+		let seasonPointTotal = teams.points
+		let teamId = teams.id
+		let teamName = `${team.location} ${team.nickname}`
+		// console.log(teamName);
+		let nameObj = []
+		nameObj.push({[teamId] : teamName});
+		console.log(teamId);
 		teams.sort((a, b) => (a.points < b.points) ? 1 : -1);		
+		return teamName;
 	});
 
 
@@ -44,20 +50,31 @@ function App() {
 			let fantasyStats = (matchup[fantasyTeam]);
 			if (fantasyStats.hasOwnProperty('rosterForMatchupPeriodDelayed')){
 				// console.log(fantasyStats);
+				let obj = []
 				let fantasyPoints = fantasyStats.totalPointsLive;
-				let fantasyTeamID = fantasyStats.teamId;
+				let fantasyTeamId = fantasyStats.teamId;
 				// return fantasyStats;
-				console.log(fantasyPoints, fantasyTeam, fantasyTeamID);
+				
+				obj.push({[fantasyTeamId] : fantasyPoints});
+				// console.log(obj);
+				
 			} 
 			
 
 		}
 	})
 
-	function makeIt(fantasyStats) {
+
+	function makeIt() {
 
 	}
 
+	// let teams = data.teams; 
+	
+	// teams.forEach( (team) => {
+	// 	let teamId = teams.id;	
+	// 	console.log(teamId);
+	// });
 
 	// function getMatchup(matchups) {
 
@@ -67,7 +84,7 @@ function App() {
 
     <div className="App container">
 			<header>
-				<h1>Weekly Fantasy Leaders</h1>
+				<h1>Total Point Leaders</h1>
 			</header> 
 			<main>
 				<div className="grid">
